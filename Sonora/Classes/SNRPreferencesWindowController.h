@@ -37,6 +37,9 @@
 @property (nonatomic, weak) IBOutlet NSView *sync;
 @property (nonatomic, weak) IBOutlet NSView *lastFM;
 @property (nonatomic, weak) IBOutlet MASShortcutView *searchShortcutView;
+@property (nonatomic, weak) IBOutlet MASShortcutView *previousSongShortcutView;
+@property (nonatomic, weak) IBOutlet MASShortcutView *nextSongShortcutView;
+@property (nonatomic, weak) IBOutlet MASShortcutView *playPauseShortcutView;
 @property (nonatomic, weak) IBOutlet NSButton *lastFMButton;
 @property (nonatomic, weak) IBOutlet NSTextField *lastFMField;
 - (IBAction)authenticateLastFM:(id)sender;

@@ -31,6 +31,8 @@
 #import "SNRHotKeyManager.h"
 #import "SNRSearchWindowController.h"
 #import "SNRSearchViewController.h"
+#import "SNRQueueController.h"
+#import "SNRQueueCoordinator.h"
 
 #import "NSWindow+SNRAdditions.h"
 
@@ -49,6 +51,8 @@
 - (void)registerHotKeys
 {
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    
+    // search
     if (![[ud objectForKey:kUserDefaultsSearchShortcutKey] isKindOfClass:[NSData class]]) {
         // Set up the default search shortcut
         MASShortcut *shortcut = [MASShortcut shortcutWithKeyCode:kVK_ANSI_Period modifierFlags:NSCommandKeyMask];
@@ -73,6 +77,39 @@
             [search.window makeFirstResponder:search.searchViewController.searchField];
             [search showWindow:nil];
         }
+    }];
+    
+    // previous song
+    if (![[ud objectForKey:kUserDefaultsPreviousSongShortcutKey] isKindOfClass:[NSData class]]) {
+        // Set up the default previous song shortcut
+        MASShortcut *shortcut = [MASShortcut shortcutWithKeyCode:kVK_LeftArrow
+                                                   modifierFlags:NSCommandKeyMask | NSControlKeyMask];
+        [ud setObject:[shortcut data] forKey:kUserDefaultsPreviousSongShortcutKey];
+    }
+    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:kUserDefaultsPreviousSongShortcutKey handler:^{
+        [SNR_MainQueueController previous];
+    }];
+
+    // next song
+    if (![[ud objectForKey:kUserDefaultsNextSongShortcutKey] isKindOfClass:[NSData class]]) {
+        // Set up the default next song shortcut
+        MASShortcut *shortcut = [MASShortcut shortcutWithKeyCode:kVK_RightArrow
+                                                   modifierFlags:NSCommandKeyMask | NSControlKeyMask];
+        [ud setObject:[shortcut data] forKey:kUserDefaultsNextSongShortcutKey];
+    }
+    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:kUserDefaultsNextSongShortcutKey handler:^{
+        [SNR_MainQueueController next];
+    }];
+    
+    // play / pause
+    if (![[ud objectForKey:kUserDefaultsPlayPauseShortcutKey] isKindOfClass:[NSData class]]) {
+        // Set up the default pause shortcut
+        MASShortcut *shortcut = [MASShortcut shortcutWithKeyCode:kVK_Space
+                                                   modifierFlags:NSCommandKeyMask | NSControlKeyMask];
+        [ud setObject:[shortcut data] forKey:kUserDefaultsPlayPauseShortcutKey];
+    }
+    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:kUserDefaultsPlayPauseShortcutKey handler:^{
+        [SNR_MainQueueController playPause];
     }];
 }
 @end

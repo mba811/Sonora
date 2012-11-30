@@ -61,3 +61,6 @@ NSString* const kGrowlNotificationImportediTunesTracks = @"SNRGrowlNotificationI
 NSString* const kGrowlNotificationLovedTrack = @"SNRGrowlNotificationLovedTrack";
 
 NSString* const kUserDefaultsSearchShortcutKey = @"searchShortcut";
+NSString* const kUserDefaultsPreviousSongShortcutKey = @"previousSongShortcut";
+NSString* const kUserDefaultsNextSongShortcutKey = @"nextSongShortcut";
+NSString* const kUserDefaultsPlayPauseShortcutKey = @"playPauseShortcut";

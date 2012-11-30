@@ -77,3 +77,6 @@ extern NSString* const kGrowlNotificationImportediTunesTracks;
 extern NSString* const kGrowlNotificationLovedTrack;
 
 extern NSString* const kUserDefaultsSearchShortcutKey;
+extern NSString* const kUserDefaultsPreviousSongShortcutKey;
+extern NSString* const kUserDefaultsNextSongShortcutKey;
+extern NSString* const kUserDefaultsPlayPauseShortcutKey;

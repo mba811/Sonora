@@ -51,6 +51,9 @@ static NSString* const kImageLastFM = @"lastfm";
 @synthesize sync = _sync;
 @synthesize lastFM = _lastFM;
 @synthesize searchShortcutView = _searchShortcutView;
+@synthesize previousSongShortcutView = _previousSongShortcutView;
+@synthesize nextSongShortcutView = _nextSongShortcutView;
+@synthesize playPauseShortcutView = _playPauseShortcutView;
 @synthesize lastFMButton = _lastFMButton;
 @synthesize lastFMField = _lastFMField;
 
@@ -73,6 +76,9 @@ static NSString* const kImageLastFM = @"lastfm";
     [super awakeFromNib];
     [self resetLastFMButtonAndTextField];
     [self.searchShortcutView setAssociatedUserDefaultsKey:kUserDefaultsSearchShortcutKey];
+    [self.previousSongShortcutView setAssociatedUserDefaultsKey:kUserDefaultsPreviousSongShortcutKey];
+    [self.nextSongShortcutView setAssociatedUserDefaultsKey:kUserDefaultsNextSongShortcutKey];
+    [self.playPauseShortcutView setAssociatedUserDefaultsKey:kUserDefaultsPlayPauseShortcutKey];
     [[NSUserDefaultsController sharedUserDefaultsController] addObserver:self forKeyPath:@"values.lastFMUsername" options:0 context:NULL];
 }
 
